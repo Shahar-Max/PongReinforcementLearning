@@ -1,21 +1,15 @@
 import random
 
 class Ball:
-    def __init__(self, x, y, speed_x, speed_y):
-        self.x = x
-        self.y = y
-        self.start_x = x
-        self.start_y = y
+    def __init__(self, x, y):
         self.radius = 5
-        self.initial_speed_x = speed_x
-        self.initial_speed_y = speed_y
         self.reset()
 
     def reset(self):
-        self.x = self.start_x
-        self.y = self.start_y
-        self.dx = self.initial_speed_x
-        self.dy = self.initial_speed_y * random.choice([-1, 1])
+        self.x = random.random() * 200 + 200
+        self.y = random.random() * 200 + 200
+        self.dx = random.random() * 9 + 1
+        self.dy = random.random() * 9 + 1
 
     def move(self):
         self.x += self.dx

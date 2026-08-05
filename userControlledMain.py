@@ -49,31 +49,15 @@ def main():
         )
         
         # Draw ball
-        if engine.game_state.is_playing or engine.game_state.is_game_over:
-            # Keep drawing ball where it ended on game over
-            pygame.draw.circle(
-                screen, 
-                (255, 255, 255), 
-                (int(engine.ball.x), int(engine.ball.y)), 
-                engine.ball.radius
-            )
+        pygame.draw.circle(
+            screen,
+            (255, 255, 255),
+            (int(engine.ball.x), int(engine.ball.y)),
+            engine.ball.radius
+        )
 
-        # Draw Text / HUD
-        if engine.game_state.is_playing:
-            score_text = font.render(f"Score: {engine.game_state.score}", True, (255, 255, 255))
-            screen.blit(score_text, (20, 20))
-        elif engine.game_state.is_game_over:
-            text1 = font.render("GAME OVER", True, (255, 255, 255))
-            text2 = font.render(f"Score: {engine.game_state.score} | Best: {engine.game_state.high_score}", True, (255, 255, 255))
-            text3 = font.render("Press SPACE to play again", True, (255, 255, 255))
-            screen.blit(text1, (WIDTH // 2 - text1.get_width() // 2, HEIGHT // 3))
-            screen.blit(text2, (WIDTH // 2 - text2.get_width() // 2, HEIGHT // 3 + 40))
-            screen.blit(text3, (WIDTH // 2 - text3.get_width() // 2, HEIGHT // 3 + 80))
-        else:
-            text1 = font.render("PONG - WALL CHALLENGE", True, (255, 255, 255))
-            text2 = font.render("Press SPACE to start", True, (255, 255, 255))
-            screen.blit(text1, (WIDTH // 2 - text1.get_width() // 2, HEIGHT // 3))
-            screen.blit(text2, (WIDTH // 2 - text2.get_width() // 2, HEIGHT // 3 + 45))
+        score_text = font.render(f"Score: {engine.score}", True, (255, 255, 255))
+        screen.blit(score_text, (20, 20))
 
         pygame.display.flip()
         clock.tick(FPS)
