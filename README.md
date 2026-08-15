@@ -9,10 +9,7 @@ Another goal of the project is to evaluate the effectiveness of this approach wh
 handling tasks that are more convoluted and in other domains,
 as well as to further test other algorithms and approaches.
 
-The current model (although trained with limited hardware) 
-manages to score 189.8 on average, with the testing environment capping scores at 1000 to prevent deadlocks.
-It reaches the maximum score in roughly 17% of the games, 
-which accounts for the majority of the score-sum.
+The current model manages to score over 1000 in almost 80% of its games.
 
 Play using the trained model:
 python modelControlledMain.py --play
