@@ -8,8 +8,8 @@ class Ball:
     def reset(self):
         self.x = random.random() * 200 + 200
         self.y = random.random() * 200 + 200
-        self.dx = random.random() * 9 + 1
-        self.dy = random.random() * 9 + 1
+        self.dx = random.random() * 19 + 1
+        self.dy = random.random() * 19 + 1
 
     def move(self):
         self.x += self.dx

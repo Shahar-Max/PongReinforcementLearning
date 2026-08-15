@@ -1,5 +1,5 @@
 class Paddle:
-    def __init__(self, x, y, width=15, height=90, speed=8):
+    def __init__(self, x, y, width, height, speed):
         self.x = x
         self.y = y
         self.width = width

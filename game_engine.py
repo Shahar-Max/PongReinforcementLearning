@@ -3,12 +3,13 @@ from ball import Ball
 
 class PongEngine:
     def __init__(self, width=800, height=600):
+        self.game_lost = False
         self.score = 0
         self.width = width
         self.height = height
         
         # Instantiate Component
-        self.paddle = Paddle(30, self.height // 2 - 45, width=15, height=90, speed=8)
+        self.paddle = Paddle(30, self.height // 2 - 45, width=15, height=120, speed=30)
         self.ball = Ball(self.width // 2, self.height // 2)
         
         # Define logical boundaries of the right wall
@@ -17,10 +18,10 @@ class PongEngine:
         self.wall_top = 10
         self.wall_bottom = self.height - 10
 
-    def step(self, up_pressed, down_pressed, space_pressed):
-        """
-        Steps the game logic forward by one tick.
-        """
+    def step(self, up_pressed, down_pressed):
+        if self.game_lost:
+            return 0
+
         # Paddle movement
         if up_pressed:
             self.paddle.move_up(boundary_top=10)
@@ -54,8 +55,13 @@ class PongEngine:
                 self.ball.x = self.paddle.right + self.ball.radius
                 self.ball.dx *= -1
                 self.score += 1
+                return 1
 
         # Miss: ball goes off-screen left
-        if self.ball.x - self.ball.radius < 0:
+        if self.ball.x < 0:
             self.score = 0
             self.ball.reset()
+            self.game_lost = True
+            return -1
+
+        return 0
